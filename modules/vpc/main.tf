@@ -17,6 +17,7 @@ resource "aws_subnet" "eks-private-subnets" {
   tags = {
     Name                                         = "${var.cluster_name}-private-${count.index}"
     "pankaj.betewad/cluster/${var.cluster_name}" = "shared"
+    "kubernetes.io/role/internal-elb"            = "1"
   }
 }
 
@@ -29,6 +30,7 @@ resource "aws_subnet" "eks-public-subnets" {
   tags = {
     Name                                         = "${var.cluster_name}-public-${count.index}"
     "pankaj.betewad/cluster/${var.cluster_name}" = "shared"
+    "kubernetes.io/role/elb"                     = "1"
   }
 }
 
